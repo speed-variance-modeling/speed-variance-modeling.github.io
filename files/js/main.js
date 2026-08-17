@@ -135,7 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
       tabBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentDataset = btn.dataset.category;
+      currentStepIndex = 0;
       updateImages();
+      startAutoPlay();
     });
   });
 
