@@ -110,6 +110,26 @@ header {
   margin: 0 auto 40px;
 }
 
+.brand-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.site-header-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(192, 15, 125, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-header-logo:hover {
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 12px 32px rgba(192, 15, 125, 0.4);
+}
+
 .venue-badge {
   display: inline-block;
   font-size: 1.15rem;
