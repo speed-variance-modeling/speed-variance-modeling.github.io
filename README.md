@@ -6,7 +6,7 @@ Official project page repository for **"Speed-Variation Distillation for Generat
 
 ## Authors
 - **Sukit Seripanitkarn** (VISTEC, Thailand)
-- **Phonphrm Tawatdamrongkrit** (VISTEC, Thailand)
+- **Phonphrm Thawatdamrongkit** (VISTEC, Thailand)
 - **Supasorn Suwajanakorn** (VISTEC, Thailand)
 
 ## Paper Abstract
