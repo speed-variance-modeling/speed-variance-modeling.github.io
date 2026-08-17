@@ -1,589 +1,266 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Speed-Variation Distillation for Generative Modeling (ECCV 2026)</title>
-  <meta name="description"
-    content="Speed-Variation Distillation for Generative Modeling - Official Project Page for ECCV 2026 paper by Sukit Seripanitkarn, Phonphrm Tawatdamrongkrit, and Supasorn Suwajanakorn.">
-  <meta name="keywords"
-    content="Speed-Variation Distillation, Diffusion Models, Generative Modeling, Distillation, Image Morphing, ECCV 2026">
+  <meta name="description" content="Speed-Variation Distillation for Generative Modeling - ECCV 2026 Project Page">
+  <meta name="keywords" content="Speed-Variation Distillation, Diffusion Models, Generative Modeling, Image Generation, Latent Diffusion">
+  <title>Speed-Variation Distillation for Generative Modeling</title>
 
-  <!-- Font Awesome & Google Fonts -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./files/css/styles.css">
 </head>
-
 <body>
 
-  <!-- Floating Navigation Controls -->
-  <div class="nav-controls">
-    <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle dark mode">
-      <i id="theme-icon" class="fa fa-moon-o"></i>
-    </button>
-  </div>
+  <!-- Floating Dark Mode Toggle -->
+  <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle dark mode">
+    <span id="theme-icon">🌙</span>
+    <span id="theme-text">Dark Mode</span>
+  </button>
 
-  <div class="container">
-    <!-- Hero Header -->
-    <header class="hero">
-      <div class="venue-badge">
-        <i class="fa fa-trophy"></i> ECCV 2026 CDEL Workshop
+  <!-- Header Section -->
+  <header>
+    <div class="container">
+      <div class="hero-content">
+        <div class="venue-badge">ECCV 2026</div>
+        <h1 class="paper-title">
+          Speed-Variation Distillation<br>
+          for <span class="highlight">Generative Modeling</span>
+        </h1>
+
+        <div class="authors-list">
+          <span class="author-item">Sukit Seripanitkarn*</span>
+          <span class="author-item">Phonphrm Tawatdamrongkrit*</span>
+          <span class="author-item">Supasorn Suwajanakorn</span>
+        </div>
+
+        <div class="affiliation">
+          <svg style="width:18px;height:18px;color:#6b7280" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          VISTEC, Thailand &nbsp;&bull;&nbsp; <small>*Equal Contribution</small>
+        </div>
+
+        <div class="action-buttons">
+          <a href="./ECCV_2026_What_does_it_evolve_into-12.pdf" target="_blank" class="btn btn-primary">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5v1zm5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5v3zm4-3H17v1h1.5V13H17v2h-1.5V9H18.5v1.5z"/></svg>
+            Paper PDF
+          </a>
+          <a href="https://github.com/phonphrm/diffusion-mental-averages" target="_blank" class="btn">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            Code Repository
+          </a>
+        </div>
       </div>
-      <h1 class="hero-title">
-        Speed-Variation Distillation<br>for Generative Modeling
-      </h1>
 
-      <div class="authors-list">
-        <a href="https://scholar.google.com/citations?hl=en&user=Iw1G8EQAAAAJ" class="author-item" target="_blank">Sukit
-          Seripanitkarn</a>
-        <a href="https://phonphrm.github.io/" class="author-item" target="_blank">Phonphrm Thawatdamrongkit</a>
-        <a href="https://www.supasorn.com" class="author-item" target="_blank">Supasorn Suwajanakorn</a>
-      </div>
-
-      <div class="affiliation">
-        VISTEC, Thailand
-      </div>
-
-      <div class="action-buttons">
-        <a href="ECCV_2026_What_does_it_evolve_into-12.pdf" class="btn btn-primary" target="_blank">
-          <i class="fa fa-file-pdf-o"></i> Paper (PDF)
-        </a>
-        <a href="https://github.com/phonphrm/diffusion-mental-averages" class="btn btn-secondary" target="_blank">
-          <i class="fa fa-github"></i> Code (GitHub)
-        </a>
-        <a href="#bibtex" class="btn btn-secondary">
-          <i class="fa fa-quote-right"></i> Cite BibTeX
-        </a>
-      </div>
-    </header>
-
-    <!-- TL;DR Box -->
-    <div class="tldr-box">
-      <div class="tldr-tag">TL;DR</div>
-      <div class="tldr-text">
-        We introduce <strong>Speed-Variation Distillation</strong>, reversing a variation-reducing degradation process
-        that contracts diverse images toward a shared prototype on the data manifold. Every step yields a clean, valid
-        image—enabling early termination for a controllable <strong>speed–variation trade-off</strong>.
+      <!-- FULL Teaser Image Display -->
+      <div class="teaser-container" style="max-width: 1100px; margin: 0 auto;">
+        <img src="./files/assets/teaser_full_side.jpg" alt="Full Teaser Figure: Standard Diffusion vs Speed-Variation Distillation">
       </div>
     </div>
+  </header>
 
-    <!-- Teaser Comparison -->
-    <section class="glass-card teaser-container">
-      <h3 class="section-title">Generative Process Comparison</h3>
+  <!-- TL;DR Section -->
+  <section class="tldr-section">
+    <div class="container container-narrow">
+      <div class="tldr-box">
+        <div class="tldr-label">TL;DR</div>
+        <p class="tldr-text">
+          Standard diffusion denoising trajectories pass through corrupted, unrecognizable intermediate states. We distill generation into a <strong>variation-reducing reverse process</strong> that preserves recognizable images on the data manifold at every single step—enabling early termination and a controllable speed–variation trade-off.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract Section -->
+  <section id="abstract">
+    <div class="container container-narrow">
+      <h2 class="section-title">Abstract</h2>
+      <div class="abstract-box">
+        While diffusion models excel at image generation, their denoising trajectories pass through corrupted intermediate states far from the image manifold. We ask whether generation can instead proceed through <strong>recognizable images throughout the entire trajectory</strong>. We introduce a generative framework built around a variation-reducing degradation process that contracts diverse images toward a shared prototype while preserving recognizable intermediate states. Because such manifold traversal lacks a simple analytical form, we construct the trajectories using generative-prior-based image morphing. We then distill the reverse process into a diversification operator that transforms the prototype into increasingly varied samples. To resolve the one-to-many ambiguity of the reverse process, we associate each trajectory with its initial noise latent and apply perturbations to improve robustness against accumulated errors. At inference, <strong>every step yields a recognizable image</strong>, allowing early termination and enabling a controllable speed–variation trade-off.
+      </div>
+    </div>
+  </section>
+
+  <!-- Method Section -->
+  <section id="method" style="background: var(--bg-light); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <h2 class="section-title">Method Overview</h2>
+      
+      <div style="text-align: center; margin-bottom: 30px;">
+        <div class="teaser-container" style="max-width: 1050px; margin: 0 auto;">
+          <img src="./files/assets/fig2_overview.png" alt="Method Overview Diagram">
+        </div>
+        <p style="margin-top: 14px; font-size: 0.95rem; color: var(--text-muted);">
+          <strong>Figure 2: Method Overview.</strong> (a) Generate images with a pretrained LDM, select a prototype, and construct variation-reducing trajectories using image morphing. (b) Train a network conditioned on timestep and initial noise to distill the reverse diversification process. (c) Inference loop generating diverse samples from a prototype.
+        </p>
+      </div>
+
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="method-icon">1</div>
+          <h3>Variation-Reducing Process</h3>
+          <p>Instead of corrupting images into random Gaussian noise, our degradation contracts diverse images toward a shared prototype while keeping all intermediate states strictly on the image manifold.</p>
+        </div>
+
+        <div class="method-card">
+          <div class="method-icon">2</div>
+          <h3>Prior-Based Trajectory Alignment</h3>
+          <p>Because manifold traversal lacks a simple closed form, we leverage generative-prior image morphing to map smooth, semantically continuous trajectories between prototype and target samples.</p>
+        </div>
+
+        <div class="method-card">
+          <div class="method-icon">3</div>
+          <h3>Noise Latent Association</h3>
+          <p>To resolve the one-to-many mapping in the reverse diversification direction, each trajectory is associated with an initial noise latent and perturbed to prevent error accumulation.</p>
+        </div>
+
+        <div class="method-card">
+          <div class="method-icon">4</div>
+          <h3>Speed–Variation Trade-Off</h3>
+          <p>Inference can be terminated at any intermediate step. Stopping early yields high-quality recognizable images in fewer steps, allowing flexible trading between generation speed and sample diversity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Visualizer Section -->
+  <section class="visualizer-section" id="visualizer">
+    <div class="container">
+      <h2 class="section-title">Interactive Trajectory Explorer</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 24px; font-size: 1.05rem;">
+        Compare intermediate generation states across timesteps (Steps 1 &rarr; 50). Watch the auto-slide or manually drag the slider!
+      </p>
+
+      <!-- Dataset Selector Tabs -->
+      <div class="dataset-tabs">
+        <button class="tab-btn active" data-category="ffhq">FFHQ Faces</button>
+        <button class="tab-btn" data-category="celeba">CelebA-HQ</button>
+        <button class="tab-btn" data-category="bedroom">LSUN Bedroom</button>
+        <button class="tab-btn" data-category="church">LSUN Church</button>
+      </div>
+
+      <!-- Slider Control -->
+      <div class="slider-container">
+        <div class="slider-header">
+          <div class="slider-title-group">
+            <span class="slider-title">Sampling Timestep Progression</span>
+            <button class="play-pause-btn playing" id="play-pause-btn" aria-label="Toggle auto-slide">
+              <span id="play-icon">⏸ Pause Auto-Slide</span>
+            </button>
+          </div>
+          <span class="step-badge" id="step-badge">Step 1 of 50</span>
+        </div>
+        <input type="range" class="range-slider" id="step-slider" min="0" max="5" step="1" value="0">
+        <div class="step-labels">
+          <span>Step 1 (Start)</span>
+          <span>Step 10</span>
+          <span>Step 20</span>
+          <span>Step 30</span>
+          <span>Step 40</span>
+          <span>Step 50 (Final)</span>
+        </div>
+      </div>
+
+      <!-- Comparison Cards Grid -->
       <div class="comparison-grid">
-        <!-- Diffusion Process -->
+        <!-- Ours Card -->
+        <div class="comparison-card ours">
+          <div class="card-header ours-header">
+            <span>Speed-Variation Distillation (Ours)</span>
+            <span class="tag tag-success">Recognizable Manifold</span>
+          </div>
+          <div class="card-body">
+            <img id="img-ours" src="./files/assets/results/ffhq/ours/step_001.jpg" alt="Ours Generation State">
+          </div>
+          <div class="card-caption" id="caption-ours">
+            Step 1: Instantly yields a crisp, recognizable prototype structure on the manifold.
+          </div>
+        </div>
+
+        <!-- Baseline Card -->
         <div class="comparison-card">
-          <h4>(a) Standard Diffusion Process</h4>
-          <svg viewBox="0 0 400 240" style="background:#1e293b; border-radius:8px;">
-            <defs>
-              <linearGradient id="diffGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#ef4444" />
-                <stop offset="50%" stop-color="#f59e0b" />
-                <stop offset="100%" stop-color="#10b981" />
-              </linearGradient>
-            </defs>
-            <!-- Gaussian Noise to Data -->
-            <rect x="20" y="30" width="360" height="140" rx="8" fill="none" stroke="#334155" stroke-dasharray="4" />
-            <path d="M 40 100 Q 150 160 200 100 T 360 100" fill="none" stroke="url(#diffGrad)" stroke-width="4" />
-            <circle cx="40" cy="100" r="8" fill="#ef4444" />
-            <text x="35" y="75" fill="#94a3b8" font-size="11" font-family="sans-serif">Gaussian Noise</text>
-            <circle cx="360" cy="100" r="8" fill="#10b981" />
-            <text x="310" y="75" fill="#94a3b8" font-size="11" font-family="sans-serif">Data Manifold</text>
-            <text x="130" y="200" fill="#cbd5e1" font-size="13" font-weight="600" font-family="sans-serif">Noisy &
-              Blurry Trajectory</text>
-          </svg>
-          <div class="caption">Intermediate states pass through corrupted noise far from the data manifold.</div>
-        </div>
-
-        <!-- Our Degradation & Diversification Process -->
-        <div class="comparison-card">
-          <h4>(b) Our Speed-Variation Distillation</h4>
-          <svg viewBox="0 0 400 240" style="background:#1e293b; border-radius:8px;">
-            <defs>
-              <linearGradient id="ourGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#c00f7d" />
-                <stop offset="50%" stop-color="#8b5cf6" />
-                <stop offset="100%" stop-color="#3b82f6" />
-              </linearGradient>
-            </defs>
-            <!-- Manifold Traversal -->
-            <rect x="20" y="30" width="360" height="140" rx="8" fill="rgba(192,15,125,0.08)" stroke="#c00f7d"
-              stroke-width="1.5" />
-            <path d="M 40 100 Q 200 40 360 100" fill="none" stroke="url(#ourGrad)" stroke-width="4" />
-            <circle cx="40" cy="100" r="8" fill="#c00f7d" />
-            <text x="25" y="130" fill="#e066d0" font-size="11" font-weight="600" font-family="sans-serif">Shared
-              Prototype</text>
-            <circle cx="360" cy="100" r="8" fill="#3b82f6" />
-            <text x="310" y="130" fill="#93c5fd" font-size="11" font-weight="600" font-family="sans-serif">Diverse
-              Samples</text>
-            <text x="110" y="200" fill="#e066d0" font-size="13" font-weight="600" font-family="sans-serif">100% Valid &
-              Clean on Data Manifold</text>
-          </svg>
-          <div class="caption">Generates clean natural images at every step, starting from a shared prototype.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Abstract & Contributions Section -->
-    <section class="glass-card">
-      <h3 class="section-title">Abstract</h3>
-      <p class="abstract-text">
-        While diffusion models excel at image generation, their denoising trajectories pass through corrupted
-        intermediate states far from the image manifold. We ask whether generation can instead proceed through
-        recognizable images throughout the entire trajectory.
-      </p>
-      <p class="abstract-text">
-        We introduce a generative framework built around a <strong>variation-reducing degradation process</strong> that
-        contracts diverse images toward a shared prototype while preserving recognizable intermediate states. We distill
-        the reverse process into a diversification operator that transforms the prototype into increasingly varied
-        samples. At inference, every step yields a recognizable image, allowing early termination and enabling a
-        controllable speed–variation trade-off.
-      </p>
-
-      <div class="key-points">
-        <div class="point-card">
-          <h5><i class="fa fa-sparkles"></i> Manifold Traversal</h5>
-          <p>Intermediate states remain valid and clean on the data manifold throughout generation, unlike noisy
-            diffusion trajectories.</p>
-        </div>
-        <div class="point-card">
-          <h5><i class="fa fa-tachometer"></i> Speed–Variation Trade-Off</h5>
-          <p>Fewer steps yield samples close to the prototype quickly; more steps expand output diversity on demand.</p>
-        </div>
-        <div class="point-card">
-          <h5><i class="fa fa-cogs"></i> Noise & Variation Perturbation</h5>
-          <p>Conditioned on associated noise latents η with perturbation mechanisms to prevent prediction error
-            accumulation.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Interactive Dataset Showcase -->
-    <section class="glass-card">
-      <h3 class="section-title">Qualitative Dataset Results</h3>
-      <p class="caption" style="margin-bottom: 1.5rem;">
-        Compare generated sequence strips across <strong>FFHQ</strong>, <strong>CelebA</strong>,
-        <strong>LSUN-Church</strong>, and <strong>LSUN-Bedroom</strong> datasets across timesteps \(t = T \to t = 0\).
-      </p>
-
-      <!-- Dataset Tabs -->
-      <div class="tab-container dataset-tabs">
-        <button class="tab-btn active" data-dataset="ffhq">FFHQ (Faces)</button>
-        <button class="tab-btn" data-dataset="celeba">CelebA (Celebrities)</button>
-        <button class="tab-btn" data-dataset="church">LSUN Church</button>
-        <button class="tab-btn" data-dataset="bedroom">LSUN Bedroom</button>
-      </div>
-
-      <!-- Dataset Panel: FFHQ -->
-      <div id="dataset-ffhq" class="dataset-panel">
-        <div class="dataset-display">
-          <div class="trajectory-strip">
-            <div class="trajectory-label">
-              <span>Standard Diffusion \(x_t\) (Intermediate State)</span>
-              <span class="text-muted">t=50 &rarr; t=0</span>
-            </div>
-            <div class="strip-images">
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#334155;">
-                  <circle cx="50" cy="50" r="40" fill="#475569" />
-                </svg><span class="step-tag">t=50</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#475569;">
-                  <circle cx="50" cy="50" r="35" fill="#64748b" />
-                </svg><span class="step-tag">t=40</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#64748b;">
-                  <circle cx="50" cy="50" r="30" fill="#94a3b8" />
-                </svg><span class="step-tag">t=30</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#94a3b8;">
-                  <circle cx="50" cy="50" r="25" fill="#cbd5e1" />
-                </svg><span class="step-tag">t=20</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#cbd5e1;">
-                  <circle cx="50" cy="50" r="20" fill="#f1f5f9" />
-                </svg><span class="step-tag">t=10</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#f1f5f9;">
-                  <circle cx="50" cy="50" r="20" fill="#c00f7d" />
-                </svg><span class="step-tag">t=0</span></div>
-            </div>
+          <div class="card-header baseline-header">
+            <span>Standard Diffusion (Baseline)</span>
+            <span class="tag tag-warning">Corrupted Noise</span>
           </div>
-
-          <div class="trajectory-strip">
-            <div class="trajectory-label">
-              <span>Standard Diffusion \(\hat{x}_0\) (Predicted Clean)</span>
-              <span class="text-muted">t=50 &rarr; t=0</span>
-            </div>
-            <div class="strip-images">
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#cbd5e1;">
-                  <circle cx="50" cy="45" r="22" fill="#e2e8f0" />
-                </svg><span class="step-tag">t=50</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#e2e8f0;">
-                  <circle cx="50" cy="45" r="22" fill="#cbd5e1" />
-                </svg><span class="step-tag">t=40</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#e2e8f0;">
-                  <circle cx="50" cy="45" r="22" fill="#94a3b8" />
-                </svg><span class="step-tag">t=30</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#f1f5f9;">
-                  <circle cx="50" cy="45" r="22" fill="#6366f1" />
-                </svg><span class="step-tag">t=20</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#f1f5f9;">
-                  <circle cx="50" cy="45" r="22" fill="#4f46e5" />
-                </svg><span class="step-tag">t=10</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#ffffff;">
-                  <circle cx="50" cy="45" r="22" fill="#4338ca" />
-                </svg><span class="step-tag">t=0</span></div>
-            </div>
+          <div class="card-body">
+            <img id="img-baseline" src="./files/assets/results/ffhq/baseline/step_001.jpg" alt="Baseline Generation State">
           </div>
-
-          <div class="trajectory-strip">
-            <div class="trajectory-label" style="color: var(--accent-primary); font-weight:700;">
-              <span>Speed-Variation Distillation (Ours - Clean Trajectory)</span>
-              <span>t=50 &rarr; t=0</span>
-            </div>
-            <div class="strip-images">
-              <div class="strip-item" style="border: 2px solid var(--accent-primary);">
-                <svg viewBox="0 0 100 100" style="background:#fce7f3;">
-                  <circle cx="50" cy="40" r="20" fill="#c00f7d" />
-                  <rect x="35" y="65" width="30" height="25" rx="5" fill="#8b5cf6" />
-                </svg>
-                <span class="step-tag" style="background:var(--accent-primary);">Prototype t=50</span>
-              </div>
-              <div class="strip-item">
-                <svg viewBox="0 0 100 100" style="background:#fbcfe8;">
-                  <circle cx="50" cy="40" r="21" fill="#c00f7d" />
-                  <rect x="34" y="65" width="32" height="25" rx="5" fill="#7c3aed" />
-                </svg>
-                <span class="step-tag">t=40</span>
-              </div>
-              <div class="strip-item">
-                <svg viewBox="0 0 100 100" style="background:#f472b6;">
-                  <circle cx="50" cy="40" r="22" fill="#a21caf" />
-                  <rect x="33" y="65" width="34" height="25" rx="5" fill="#6d28d9" />
-                </svg>
-                <span class="step-tag">t=30</span>
-              </div>
-              <div class="strip-item">
-                <svg viewBox="0 0 100 100" style="background:#e879f9;">
-                  <circle cx="50" cy="40" r="23" fill="#86198f" />
-                  <rect x="32" y="65" width="36" height="25" rx="5" fill="#5b21b6" />
-                </svg>
-                <span class="step-tag">t=20</span>
-              </div>
-              <div class="strip-item">
-                <svg viewBox="0 0 100 100" style="background:#c084fc;">
-                  <circle cx="50" cy="40" r="24" fill="#701a75" />
-                  <rect x="31" y="65" width="38" height="25" rx="5" fill="#4c1d95" />
-                </svg>
-                <span class="step-tag">t=10</span>
-              </div>
-              <div class="strip-item">
-                <svg viewBox="0 0 100 100" style="background:#a855f7;">
-                  <circle cx="50" cy="40" r="25" fill="#4a044e" />
-                  <rect x="30" y="65" width="40" height="25" rx="5" fill="#2e1065" />
-                </svg>
-                <span class="step-tag" style="background:#4a044e;">Final t=0</span>
-              </div>
-            </div>
+          <div class="card-caption" id="caption-baseline">
+            Step 1: Pure random Gaussian noise (far from image manifold).
           </div>
         </div>
       </div>
 
-      <!-- Dataset Panel: CelebA -->
-      <div id="dataset-celeba" class="dataset-panel" style="display: none;">
-        <div class="dataset-display">
-          <p class="caption">CelebA trajectory evaluation demonstrating consistent facial semantics and gradual feature
-            diversification.</p>
-          <div class="trajectory-strip">
-            <div class="trajectory-label" style="color: var(--accent-primary); font-weight:700;">
-              <span>Ours (CelebA Trajectory)</span>
-              <span>t=50 &rarr; t=0</span>
-            </div>
-            <div class="strip-images">
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#fae8ff;">
-                  <circle cx="50" cy="42" r="20" fill="#d946ef" />
-                </svg><span class="step-tag">t=50</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#f5d0fe;">
-                  <circle cx="50" cy="42" r="21" fill="#c026d3" />
-                </svg><span class="step-tag">t=40</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#f0abfc;">
-                  <circle cx="50" cy="42" r="22" fill="#a21caf" />
-                </svg><span class="step-tag">t=30</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#e879f9;">
-                  <circle cx="50" cy="42" r="23" fill="#86198f" />
-                </svg><span class="step-tag">t=20</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#d946ef;">
-                  <circle cx="50" cy="42" r="24" fill="#701a75" />
-                </svg><span class="step-tag">t=10</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#c026d3;">
-                  <circle cx="50" cy="42" r="25" fill="#4a044e" />
-                </svg><span class="step-tag">t=0</span></div>
-            </div>
-          </div>
+    </div>
+  </section>
+
+  <!-- Quantitative Results Section -->
+  <section id="results">
+    <div class="container">
+      <h2 class="section-title">Quantitative Quality vs. Diversity Analysis</h2>
+      
+      <div class="plots-container">
+        <!-- Left: Plot -->
+        <div class="plot-img-box">
+          <img src="./files/assets/quality_vs_diversity.png" alt="Quality vs Diversity Graph">
         </div>
-      </div>
 
-      <!-- Dataset Panel: Church -->
-      <div id="dataset-church" class="dataset-panel" style="display: none;">
-        <div class="dataset-display">
-          <p class="caption">LSUN Church trajectory showing smooth structural diversification from a central church
-            prototype.</p>
-          <div class="trajectory-strip">
-            <div class="trajectory-label" style="color: var(--accent-primary); font-weight:700;">
-              <span>Ours (LSUN Church Trajectory)</span>
-              <span>t=50 &rarr; t=0</span>
-            </div>
-            <div class="strip-images">
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#e0f2fe;">
-                  <polygon points="50,20 25,80 75,80" fill="#0284c7" />
-                </svg><span class="step-tag">t=50</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#bae6fd;">
-                  <polygon points="50,20 23,80 77,80" fill="#0369a1" />
-                </svg><span class="step-tag">t=40</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#7dd3fc;">
-                  <polygon points="50,20 20,80 80,80" fill="#075985" />
-                </svg><span class="step-tag">t=30</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#38bdf8;">
-                  <polygon points="50,20 18,80 82,80" fill="#0c4a6e" />
-                </svg><span class="step-tag">t=20</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#0284c7;">
-                  <polygon points="50,20 15,80 85,80" fill="#0369a1" />
-                </svg><span class="step-tag">t=10</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#0369a1;">
-                  <polygon points="50,20 12,80 88,80" fill="#bae6fd" />
-                </svg><span class="step-tag">t=0</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dataset Panel: Bedroom -->
-      <div id="dataset-bedroom" class="dataset-panel" style="display: none;">
-        <div class="dataset-display">
-          <p class="caption">LSUN Bedroom trajectory generating varied interior aesthetics while preserving realistic
-            layout semantics.</p>
-          <div class="trajectory-strip">
-            <div class="trajectory-label" style="color: var(--accent-primary); font-weight:700;">
-              <span>Ours (LSUN Bedroom Trajectory)</span>
-              <span>t=50 &rarr; t=0</span>
-            </div>
-            <div class="strip-images">
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#fef3c7;">
-                  <rect x="15" y="40" width="70" height="45" fill="#d97706" />
-                </svg><span class="step-tag">t=50</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#fde68a;">
-                  <rect x="15" y="40" width="70" height="45" fill="#b45309" />
-                </svg><span class="step-tag">t=40</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#fcd34d;">
-                  <rect x="15" y="40" width="70" height="45" fill="#92400e" />
-                </svg><span class="step-tag">t=30</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#fbbf24;">
-                  <rect x="15" y="40" width="70" height="45" fill="#78350f" />
-                </svg><span class="step-tag">t=20</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#f59e0b;">
-                  <rect x="15" y="40" width="70" height="45" fill="#451a03" />
-                </svg><span class="step-tag">t=10</span></div>
-              <div class="strip-item"><svg viewBox="0 0 100 100" style="background:#d97706;">
-                  <rect x="15" y="40" width="70" height="45" fill="#fef3c7" />
-                </svg><span class="step-tag">t=0</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Method & Algorithms Section -->
-    <section class="glass-card">
-      <h3 class="section-title">Method Overview</h3>
-      <p class="abstract-text">
-        Our framework operates in two stages: (1) <strong>Variation-Reducing Degradation</strong> via DiffMorpher image
-        morphing to construct trajectories connecting diverse teacher-generated samples to a representative CLIP
-        prototype, and (2) <strong>Reverse Distillation</strong> to train a diversification operator with initial noise
-        conditioning \(\eta\) and noise perturbation \(\tau\).
-      </p>
-
-      <!-- Algorithm Viewers -->
-      <div class="algo-switcher">
-        <button class="algo-btn active" data-algo="1">Algorithm 1: Training</button>
-        <button class="algo-btn" data-algo="2">Algorithm 2: Inference</button>
-      </div>
-
-      <div class="code-container">
-        <pre id="algo-1" class="algo-block">
-<code><strong>Algorithm 1: Training Speed-Variation Distillation</strong>
-<b>Require:</b> Trajectory dataset D, model ε_θ, noise perturbation τ, variation perturbation s_max
-1: <b>while</b> not converged <b>do</b>
-2:    Sample (z_t, z_{t-1}, η, t) ~ D
-3:    Sample perturbation s ~ {0, ..., s_max - 1}
-4:    Set z_dot_t &larr; z_{t+s}
-5:    Perturb z_dot_t to obtain z_dot_t^τ using Forward Diffusion (Eq. 1)
-6:    Set t_tilde &larr; t + τ
-7:    Predict noise residual ε_hat_t &larr; ε_θ(concat(z_dot_t^τ, η), t_tilde)
-8:    Recover z_hat_{t-1} via clean prediction formula
-9:    Compute Loss L = E[ || z_hat_{t-1} - z_{t-1} ||_1 ]
-10:   Update θ
-11: <b>end while</b></code></pre>
-
-        <pre id="algo-2" class="algo-block" style="display: none;">
-<code><strong>Algorithm 2: Inference & Controllable Diversification</strong>
-<b>Require:</b> Trained model ε_θ, noise perturbation τ, target step T
-1: Sample noise conditioning η ~ N(0, I)
-2: Initialize prototype latent z_T from ε_θ
-3: <b>for</b> t = T, T-1, ..., 1 <b>do</b>
-4:    Perturb z_t to obtain z_t^τ
-5:    Set t_tilde &larr; t + τ
-6:    Predict noise ε_hat_t &larr; ε_θ(concat(z_t^τ, η), t_tilde)
-7:    Recover z_{t-1}
-8: <b>end for</b>
-9: Decode {z_t} via VAE decoder to obtain clean image trajectory {x_t}
-10: <b>return</b> {x_t} (Each step yields a valid, clean sample!)</code></pre>
-      </div>
-    </section>
-
-    <!-- Quantitative Evaluation & Ablations -->
-    <section class="glass-card">
-      <h3 class="section-title">Quantitative Evaluation & Ablation Studies</h3>
-
-      <div
-        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
-        <!-- Noise Perturbation Table -->
+        <!-- Right: Text & Metrics -->
         <div>
-          <h4 style="font-family: var(--font-heading); margin-bottom: 0.75rem; color: var(--text-primary);">Table 1:
-            Effect of Noise Perturbation \(\tau\)</h4>
-          <div class="table-responsive">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>\(\tau\)</th>
-                  <th>FID &darr;</th>
-                  <th>IS &uarr;</th>
-                  <th>P &uarr;</th>
-                  <th>R &uarr;</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>0</td>
-                  <td>199.02</td>
-                  <td>3.178</td>
-                  <td>0.068</td>
-                  <td>0.000</td>
-                </tr>
-                <tr>
-                  <td>100</td>
-                  <td>47.66</td>
-                  <td>3.105</td>
-                  <td>0.771</td>
-                  <td>0.116</td>
-                </tr>
-                <tr class="highlight">
-                  <td>300 (Ours)</td>
-                  <td>25.41</td>
-                  <td>3.912</td>
-                  <td>0.758</td>
-                  <td>0.166</td>
-                </tr>
-                <tr>
-                  <td>500</td>
-                  <td>30.53</td>
-                  <td>3.825</td>
-                  <td>0.804</td>
-                  <td>0.114</td>
-                </tr>
-                <tr>
-                  <td>800</td>
-                  <td>40.55</td>
-                  <td>3.427</td>
-                  <td>0.816</td>
-                  <td>0.060</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Variation Perturbation Table -->
-        <div>
-          <h4 style="font-family: var(--font-heading); margin-bottom: 0.75rem; color: var(--text-primary);">Table 2:
-            Effect of Variation Perturbation \(s_{max}\)</h4>
-          <div class="table-responsive">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>\(s_{max}\)</th>
-                  <th>FID &darr;</th>
-                  <th>IS &uarr;</th>
-                  <th>P &uarr;</th>
-                  <th>R &uarr;</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>46.12</td>
-                  <td>2.729</td>
-                  <td>0.866</td>
-                  <td>0.098</td>
-                </tr>
-                <tr class="highlight">
-                  <td>5 (Ours)</td>
-                  <td>25.41</td>
-                  <td>3.912</td>
-                  <td>0.758</td>
-                  <td>0.166</td>
-                </tr>
-                <tr>
-                  <td>10</td>
-                  <td>27.87</td>
-                  <td>3.584</td>
-                  <td>0.793</td>
-                  <td>0.144</td>
-                </tr>
-                <tr>
-                  <td>20</td>
-                  <td>30.50</td>
-                  <td>3.488</td>
-                  <td>0.801</td>
-                  <td>0.115</td>
-                </tr>
-                <tr>
-                  <td>50</td>
-                  <td>32.41</td>
-                  <td>3.466</td>
-                  <td>0.780</td>
-                  <td>0.093</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px;">Key Empirical Insights</h3>
+          <ul style="padding-left: 20px; color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">
+            <li style="margin-bottom: 12px;">
+              <strong>Ideal Manifold Tracking:</strong> Our method (blue solid curve) closely tracks the reference <strong>Dataset</strong> distribution curve (red dashed curve) across the entire generation trajectory.
+            </li>
+            <li style="margin-bottom: 12px;">
+              <strong>High Quality at Low Diversity:</strong> While baselines ($\hat{x}_0$ orange, $x_t$ green) start at low quality values (-2.0 to -2.3), our trajectory initiates at peak image quality right from the first step.
+            </li>
+            <li style="margin-bottom: 12px;">
+              <strong>Controllable Diversity Trade-Off:</strong> Stepping forward progressively expands sample diversity (from 1.0 to 8.0) while preserving superior image quality throughout traversal.
+            </li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- BibTeX Citation -->
-    <section id="bibtex" class="glass-card">
-      <h3 class="section-title">Citation</h3>
-      <p class="caption" style="margin-bottom: 1rem;">If you find this work useful for your research, please consider
-        citing our paper:</p>
-      <div class="bibtex-box">
-        <button id="copy-bibtex-btn" class="copy-btn"><i class="fa fa-copy"></i> Copy</button>
-        <pre><code id="bibtex-code">@inproceedings{seripanitkarn2026speed,
-  title={Speed-Variation Distillation for Generative Modeling},
-  author={Seripanitkarn, Sukit and Tawatdamrongkrit, Phonphrm and Suwajanakorn, Supasorn},
-  booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
-  year={2026}
-}</code></pre>
+  <!-- BibTeX Section -->
+  <section id="citation" style="background: var(--bg-light); border-top: 1px solid var(--border-color);">
+    <div class="container container-narrow">
+      <h2 class="section-title">BibTeX Citation</h2>
+      <div class="citation-box">
+        <button class="copy-btn" id="copy-bibtex-btn">Copy BibTeX</button>
+        <pre id="bibtex-code">@inproceedings{seripanitkarn2026speed,
+  title     = {Speed-Variation Distillation for Generative Modeling},
+  author    = {Seripanitkarn, Sukit and Tawatdamrongkrit, Phonphrm and Suwajanakorn, Supasorn},
+  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+  year      = {2026}
+}</pre>
       </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2026 Speed-Variation Distillation. VISTEC, Thailand.</p>
-    </footer>
-  </div>
+    </div>
+  </section>
 
   <!-- Toast Notification -->
-  <div id="toast-notification" class="toast"></div>
+  <div class="toast-msg" id="toast-notification">Copied to clipboard!</div>
 
-  <!-- MathJax for LaTeX Rendering -->
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script src="script.js"></script>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>
+        Speed-Variation Distillation for Generative Modeling &copy; 2026<br>
+        <small>Designed for <a href="https://www.vistec.ac.th/" target="_blank">VISTEC Vision & Learning Lab</a></small>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./files/js/main.js"></script>
 </body>
-
 </html>
